@@ -23,6 +23,7 @@ int main(int argc, char *argv[]) {
     usage();
     return 2;
   }
+
   std::unique_ptr<Scanner> snc(new Scanner);
   snc->set_target_ip(argv[1]);
   snc->init();

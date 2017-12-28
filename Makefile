@@ -1,6 +1,14 @@
 CXX=g++
-CXX_FLAGS=-o whatisopen -Wall -Werror
+CXX_FLAGS=-Wall -Werror
 CXX_LIBS=-lboost_system -lpthread
+OBJS=main.o scanner.o
 
-whatisopen: main.cpp scanner.h
-	$(CXX) main.cpp $(CXX_FLAGS) $(CXX_LIBS)
+whatisopen: $(OBJS)
+	$(CXX) -o whatisopen $^ $(CXX_FLAGS) $(CXX_LIBS)
+
+%.o: %.cpp %.h
+	$(CXX) -c -o $@ $< $(CXX_FLAGS) $(CXX_LIBS)
+
+.PHONY: clean
+clean:
+	rm -f *.o whatisopen
